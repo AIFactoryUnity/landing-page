@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Factory Unity | Standardizing Module Variants in Industrial Manufacturing</title>
+  <meta name="description" content="AI Factory Unity helps industrial manufacturers standardize module variants across global production sites with trustworthy, human-in-the-loop AI." />
+
+  <style>
+    :root {
+      --navy-950: #071923;
+      --navy-900: #0b2837;
+      --navy-800: #12384a;
+      --teal-600: #0aabb7;
+      --teal-500: #18b7c2;
+      --teal-100: #dff7f8;
+      --slate-900: #111827;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-500: #64748b;
+      --slate-100: #f1f5f9;
+      --stone-50: #fafafa;
+      --white: #ffffff;
+      --border: #dbe4ea;
+      --shadow: 0 24px 70px rgba(7, 25, 35, 0.12);
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: var(--slate-900);
+      background: var(--stone-50);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(250, 250, 250, 0.9);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(219, 228, 234, 0.8);
+    }
+
+    .nav {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--navy-950);
+    }
+
+    .brand img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(7, 25, 35, 0.08);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--slate-600);
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .nav-links a:hover { color: var(--teal-600); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--navy-950);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 800;
+      box-shadow: 0 14px 34px rgba(7, 25, 35, 0.18);
+    }
+
+    .hero {
+      background:
+        radial-gradient(circle at 12% 20%, rgba(24, 183, 194, 0.18), transparent 28%),
+        linear-gradient(135deg, #ffffff 0%, #f5fbfc 48%, #eef7f8 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 92px 24px 84px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      gap: 64px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 26px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(10, 171, 183, 0.24);
+      background: rgba(223, 247, 248, 0.84);
+      color: var(--navy-900);
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 860px;
+      font-size: clamp(44px, 7vw, 84px);
+      line-height: 0.96;
+      letter-spacing: -0.065em;
+      color: var(--navy-950);
+    }
+
+    .hero-tagline {
+      margin: 28px 0 0;
+      max-width: 780px;
+      font-size: clamp(21px, 2.3vw, 30px);
+      line-height: 1.28;
+      color: var(--navy-800);
+      font-weight: 650;
+    }
+
+    .hero-copy {
+      margin: 22px 0 0;
+      max-width: 720px;
+      color: var(--slate-600);
+      font-size: 18px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 36px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 13px 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 850;
+      font-size: 15px;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+    }
+
+    .button-primary {
+      background: var(--teal-600);
+      color: var(--white);
+      box-shadow: 0 16px 38px rgba(10, 171, 183, 0.28);
+    }
+
+    .button-primary:hover { transform: translateY(-1px); box-shadow: 0 20px 42px rgba(10, 171, 183, 0.34); }
+
+    .button-secondary {
+      background: var(--white);
+      border-color: var(--border);
+      color: var(--navy-950);
+    }
+
+    .button-secondary:hover { background: #f8fdfe; transform: translateY(-1px); }
+
+    .trust-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 34px;
+    }
+
+    .pill {
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(219, 228, 234, 0.9);
+      background: rgba(255,255,255,0.75);
+      color: var(--slate-700);
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .hero-panel {
+      position: relative;
+      border-radius: 34px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 34px;
+      overflow: hidden;
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 8px;
+      background: linear-gradient(90deg, var(--teal-600), #78cbd2, var(--navy-800));
+    }
+
+    .hero-logo {
+      width: 118px;
+      height: 118px;
+      object-fit: contain;
+      display: block;
+      margin-bottom: 26px;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      padding: 8px;
+    }
+
+    .panel-title {
+      margin: 0;
+      color: var(--navy-950);
+      font-size: 26px;
+      line-height: 1.18;
+      letter-spacing: -0.035em;
+    }
+
+    .panel-copy {
+      margin: 16px 0 0;
+      color: var(--slate-600);
+      font-size: 16px;
+    }
+
+    .metrics {
+      margin-top: 26px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .metric {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: #f8fbfc;
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--navy-950);
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .metric span {
+      color: var(--slate-600);
+      font-size: 14px;
+    }
+
+    section.content-section {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 86px 24px;
+    }
+
+    .section-head {
+      max-width: 820px;
+      margin-bottom: 36px;
+    }
+
+    .kicker {
+      color: var(--teal-600);
+      font-weight: 900;
+      font-size: 13px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--navy-950);
+      font-size: clamp(34px, 4.3vw, 56px);
+      line-height: 1.06;
+      letter-spacing: -0.045em;
+    }
+
+    .section-lead {
+      margin: 18px 0 0;
+      color: var(--slate-600);
+      font-size: 18px;
+      max-width: 850px;
+    }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--white);
+      padding: 28px;
+      box-shadow: 0 14px 40px rgba(7, 25, 35, 0.045);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      color: var(--navy-950);
+      font-size: 22px;
+      line-height: 1.22;
+      letter-spacing: -0.025em;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--slate-600);
+      font-size: 16px;
+    }
+
+    .list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 0;
+      display: grid;
+      gap: 14px;
+    }
+
+    .list li {
+      position: relative;
+      padding-left: 28px;
+      color: var(--slate-600);
+    }
+
+    .list li::before {
+      content: "";
+      position: absolute;
+      top: 0.55em;
+      left: 0;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--teal-600);
+      box-shadow: 0 0 0 4px rgba(10,171,183,0.12);
+    }
+
+    .problem-block {
+      background: var(--navy-950);
+      color: var(--white);
+    }
+
+    .problem-block .kicker { color: var(--teal-100); }
+    .problem-block h2 { color: var(--white); }
+    .problem-block .section-lead { color: #cbd5e1; }
+
+    .problem-block .card {
+      background: rgba(255,255,255,0.075);
+      border-color: rgba(255,255,255,0.12);
+      box-shadow: none;
+    }
+
+    .problem-block .card h3 { color: var(--white); }
+    .problem-block .card p, .problem-block .list li { color: #cbd5e1; }
+
+    .process {
+      display: grid;
+      gap: 14px;
+      counter-reset: process;
+    }
+
+    .step {
+      counter-increment: process;
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: var(--white);
+    }
+
+    .step-number {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: var(--navy-950);
+      background: var(--teal-100);
+      border: 1px solid rgba(10,171,183,0.22);
+    }
+
+    .step-number::before { content: "0" counter(process); }
+
+    .step h3 {
+      margin: 0 0 6px;
+      color: var(--navy-950);
+      font-size: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .step p { margin: 0; color: var(--slate-600); }
+
+    .audience-card {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .role-label {
+      display: inline-flex;
+      width: fit-content;
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: var(--navy-900);
+      background: var(--teal-100);
+      font-weight: 900;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .trust-section {
+      background: linear-gradient(180deg, #ffffff 0%, #f2fafb 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .status-panel,
+    .contact-panel {
+      border-radius: 34px;
+      padding: 40px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .status-panel {
+      background:
+        linear-gradient(135deg, rgba(10,171,183,0.09), transparent 42%),
+        var(--white);
+    }
+
+    .funding-note {
+      margin-top: 22px;
+      padding: 22px;
+      border-radius: 22px;
+      border: 1px solid rgba(10,171,183,0.22);
+      background: #f3fbfc;
+      color: var(--slate-600);
+      font-size: 15px;
+    }
+
+
+    .contact-panel {
+      background: linear-gradient(135deg, var(--navy-950), var(--navy-800));
+      color: var(--white);
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    .contact-panel h2 { color: var(--white); }
+    .contact-panel .section-lead { color: #cbd5e1; }
+
+    .contact-cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .contact-card {
+      padding: 22px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .contact-card span {
+      display: block;
+      color: #b6d9de;
+      font-size: 13px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      margin-bottom: 8px;
+    }
+
+    .contact-card strong {
+      display: block;
+      word-break: break-word;
+      font-size: 18px;
+    }
+
+    footer {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 34px 24px 54px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+      color: var(--slate-500);
+      font-size: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 960px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 38px; padding-top: 64px; }
+      .nav-links { display: none; }
+      .grid-2, .grid-3, .contact-cards { grid-template-columns: 1fr; }
+      .step { grid-template-columns: 1fr; }
+      .status-panel, .contact-panel { padding: 28px; }
+    }
+
+    @media (max-width: 560px) {
+      .nav { padding: 14px 18px; }
+      .brand span { font-size: 15px; }
+      .brand img { width: 38px; height: 38px; }
+      .nav-cta { display: none; }
+      .hero-inner, section.content-section { padding-left: 18px; padding-right: 18px; }
+      h1 { font-size: 42px; }
+      .hero-panel { padding: 26px; }
+      .card { padding: 24px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="AI Factory Unity homepage">
+        <img src="logo_ai_factory_unity.png" alt="AI Factory Unity logo" />
+        <span>AI Factory Unity</span>
+      </a>
+      <div class="nav-links">
+        <a href="#problem">Problem</a>
+        <a href="#solution">Solution</a>
+        <a href="#audiences">Audiences</a>
+        <a href="#trust">Trust</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a class="nav-cta" href="mailto:contact.aifu@protonmail.com?subject=Pilot%20request%20for%20AI%20Factory%20Unity">Request a Pilot</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow">Industrial AI · Module Standards · Berlin</div>
+          <h1 id="hero-title">Standardizing module variants in industrial manufacturing.</h1>
+          <p class="hero-tagline">Engineer once. Define your standard. Build sovereign transparency.</p>
+          <p class="hero-copy">
+            AI Factory Unity helps global manufacturing organizations reduce duplicated module variants across production sites.
+            Less fragmentation. Faster decisions. Full control for your engineering teams.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="mailto:contact.aifu@protonmail.com?subject=Pilot%20request%20for%20AI%20Factory%20Unity">Request a Pilot</a>
+            <a class="button button-secondary" href="https://www.linkedin.com/company/aifactoryunity" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+          <div class="trust-strip" aria-label="Trust signals">
+            <span class="pill">Human-in-the-loop</span>
+            <span class="pill">Engineering intelligence</span>
+            <span class="pill">Procurement support</span>
+            <span class="pill">SIBB Incubator 2026</span>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="Company summary">
+          <img class="hero-logo" src="logo_ai_factory_unity.png" alt="AI Factory Unity logo" />
+          <h2 class="panel-title">Stop engineering the same module four times.</h2>
+          <p class="panel-copy">
+            AIFU is building an AI-assisted intelligence layer for product managers, engineers, and procurement teams who need a shared view of module standards across global production environments.
+          </p>
+          <div class="metrics">
+            <div class="metric"><strong>Focus</strong><span>Module variant standardization across sites</span></div>
+            <div class="metric"><strong>Users</strong><span>Global product managers, engineers, procurement teams</span></div>
+            <div class="metric"><strong>Approach</strong><span>AI-assisted analysis with expert validation</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="problem-block" id="problem">
+      <div class="content-section">
+        <div class="section-head">
+          <div class="kicker">The Problem</div>
+          <h2>Fragmented knowledge across sites creates costly module sprawl.</h2>
+          <p class="section-lead">
+            Global manufacturers often run similar core modules across several sites. Yet each location may specify, document, or source them differently. The result is duplicated work, fragmented demand, and slow cross-site decisions.
+          </p>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Complexity grows quietly</h3>
+            <p>
+              Module variants accumulate through local adaptations, supplier differences, historical documentation, and manual comparison work. The issue is usually not lack of expertise; it is fragmented data and no scalable process to align it.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Business impact</h3>
+            <ul class="list">
+              <li>Duplicate engineering and validation effort across sites.</li>
+              <li>Reduced procurement leverage due to fragmented demand.</li>
+              <li>Slower decisions caused by manual specification comparison.</li>
+              <li>Quality, compliance, and sustainability reporting challenges.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="solution">
+      <div class="section-head">
+        <div class="kicker">The Solution</div>
+        <h2>From fragmented technical data to a shared module standard.</h2>
+        <p class="section-lead">
+          AI Factory Unity supports the creation of structured, comparable module knowledge across sites. AI prepares the analysis; engineers stay responsible for every final decision.
+        </p>
+      </div>
+      <div class="process">
+        <div class="step">
+          <div class="step-number" aria-hidden="true"></div>
+          <div>
+            <h3>Ingest technical data</h3>
+            <p>Connect relevant technical documents and enterprise sources without turning engineers into manual data administrators.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number" aria-hidden="true"></div>
+          <div>
+            <h3>Structure engineering parameters</h3>
+            <p>Transform inconsistent module information into comparable, source-linked engineering data with confidence context.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number" aria-hidden="true"></div>
+          <div>
+            <h3>Detect deviations</h3>
+            <p>Highlight relevant differences between site variants so teams can quickly separate critical deviations from acceptable tolerances.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number" aria-hidden="true"></div>
+          <div>
+            <h3>Support expert decisions</h3>
+            <p>Accept a standard, allow a justified deviation, or flag a module for review. AI supports the workflow; humans decide.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number" aria-hidden="true"></div>
+          <div>
+            <h3>Build a live module library</h3>
+            <p>Create a searchable and auditable reference for standardized modules across production environments.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="audiences">
+      <div class="section-head">
+        <div class="kicker">Built for two audiences</div>
+        <h2>Designed for product managers. Trusted by engineers.</h2>
+      </div>
+      <div class="grid-2">
+        <article class="card audience-card">
+          <span class="role-label">Global Product Manager</span>
+          <h3>A single source of truth for the module portfolio.</h3>
+          <p>
+            Know where variants exist, compare them with structured evidence, and make standardization decisions without relying on scattered exports and one-off spreadsheet work.
+          </p>
+          <ul class="list">
+            <li>Reduce portfolio complexity and duplicated effort.</li>
+            <li>Improve cross-site visibility and decision speed.</li>
+            <li>Support procurement consolidation and total-cost discussions.</li>
+            <li>Keep standardization decisions auditable.</li>
+          </ul>
+        </article>
+        <article class="card audience-card">
+          <span class="role-label">Engineer</span>
+          <h3>Less searching. Less replication. More time for work that matters.</h3>
+          <p>
+            See what other sites already solved, validate AI-prepared comparisons, and keep control over technical decisions and engineering reasoning.
+          </p>
+          <ul class="list">
+            <li>Find reusable module knowledge faster.</li>
+            <li>Review comparable technical data instead of rebuilding context manually.</li>
+            <li>Record expert reasoning for later reviews.</li>
+            <li>Keep the final decision with domain experts.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="trust-section" id="trust">
+      <div class="content-section">
+        <div class="section-head">
+          <div class="kicker">Trust by Design</div>
+          <h2>Built for environments where accuracy and security are not optional.</h2>
+          <p class="section-lead">
+            Industrial engineering data is sensitive. AI Factory Unity is developed as decision-support software, not autonomous engineering automation.
+          </p>
+        </div>
+        <div class="grid-3">
+          <div class="card">
+            <h3>Security-conscious</h3>
+            <p>Role-based access, auditability, and responsible data handling are considered from the early product stage. Your technical data remains your asset.</p>
+          </div>
+          <div class="card">
+            <h3>Human-in-the-loop</h3>
+            <p>AI surfaces structure, similarities, and deviations. Engineers and domain experts validate and decide.</p>
+          </div>
+          <div class="card">
+            <h3>Explainable outputs</h3>
+            <p>Recommendations should be traceable to sources and reasoning, so teams can stand behind decisions in reviews.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="status">
+      <div class="status-panel">
+        <div class="section-head" style="margin-bottom: 0;">
+          <div class="kicker">Current Status</div>
+          <h2>Early-stage. Serious team. Real problem.</h2>
+          <p class="section-lead">
+            AI Factory Unity is currently developing its MVP and validating with industrial manufacturing stakeholders. If you work in manufacturing and recognize the variant-standardization problem, we want to talk to you.
+          </p>
+        </div>
+        <div class="funding-note">
+          <strong>SIBB Incubator 2026.</strong> AI Factory Unity is participating in the SIBB Incubator 2026 in Berlin, part of the Berlin Startup Grant, funded by the European Union (ESF+) and the State of Berlin. We align with Europe’s mission for cyber resilience, trustworthy AI, and digital sovereignty.
+          <!-- Optional funding-logo section:
+               Add official SIBB / ESF+ / State of Berlin logos here only if required by
+               the program visibility rules and only using official files provided by SIBB.
+               These logos should be shown as funding/incubation acknowledgement,
+               not as commercial partner or client logos. -->
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="contact">
+      <div class="contact-panel">
+        <div class="section-head" style="margin-bottom: 0;">
+          <div class="kicker">Interested in a pilot?</div>
+          <h2>Validate the MVP with a real industrial use case.</h2>
+          <p class="section-lead">
+            We are looking for manufacturing organizations ready to explore module variant standardization. No commitment is required to start the conversation.
+          </p>
+        </div>
+        <div class="contact-cards">
+          <a class="contact-card" href="mailto:contact.aifu@protonmail.com?subject=Pilot%20request%20for%20AI%20Factory%20Unity">
+            <span>Email</span>
+            <strong>contact.aifu@protonmail.com</strong>
+          </a>
+          <a class="contact-card" href="https://www.linkedin.com/company/aifactoryunity" target="_blank" rel="noopener noreferrer">
+            <span>LinkedIn</span>
+            <strong>AI Factory Unity on LinkedIn</strong>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2026 AI Factory Unity. All rights reserved.</div>
+    <div>Standardizing module variants in industrial manufacturing.</div>
+  </footer>
+</body>
+</html>
