@@ -517,6 +517,62 @@
         text-transform: uppercase;
       }
 
+      /* TEAM SECTION START */
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 18px;
+      }
+
+      .team-card {
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+      }
+
+      .team-photo {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        object-position: center top;
+        border-radius: 22px;
+        border: 1px solid var(--border);
+        margin-bottom: 22px;
+        background: var(--slate-100);
+      }
+
+      .team-role {
+        display: inline-flex;
+        width: fit-content;
+        margin-bottom: 12px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        color: var(--navy-900);
+        background: var(--teal-100);
+        font-weight: 900;
+        font-size: 13px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .team-card p {
+        margin-bottom: 20px;
+      }
+
+      .team-link {
+        display: inline-flex;
+        width: fit-content;
+        margin-top: auto;
+        color: var(--teal-600);
+        font-size: 14px;
+        font-weight: 850;
+      }
+
+      .team-link:hover {
+        color: var(--navy-950);
+      }
+      /* TEAM SECTION END */
+
       .trust-section {
         background: linear-gradient(180deg, #ffffff 0%, #f2fafb 100%);
         border-top: 1px solid var(--border);
@@ -725,6 +781,7 @@
           <a href="#problem">Problem</a>
           <a href="#solution">Solution</a>
           <a href="#audiences">Who It Helps</a>
+          <a href="#team">Team</a>
           <a href="#trust">Trust</a>
           <a href="#contact">Contact</a>
         </div>
@@ -959,6 +1016,89 @@
           </article>
         </div>
       </section>
+
+      <!-- TEAM SECTION START -->
+      <section class="content-section" id="team">
+        <div class="section-head">
+          <div class="kicker">Team</div>
+          <h2>
+            Built by a founding team combining software execution, manufacturing
+            expertise, and AI product strategy.
+          </h2>
+          <p class="section-lead">
+            AI Factory Unity brings together technical product development,
+            industrial manufacturing knowledge, and business strategy to address
+            real standardization challenges in global production environments.
+          </p>
+        </div>
+
+        <div class="team-grid">
+          <article class="card team-card">
+            <img
+              class="team-photo"
+              src="assets/team/lola-attenberger.jpeg"
+              alt="Lola Attenberger, Co-Founder of AI Factory Unity"
+            />
+            <span class="team-role">Co-Founder & CEO</span>
+            <h3>Lola Attenberger</h3>
+            <p>
+              Leads AI product strategy and business development at AI Factory
+              Unity, combining deep expertise in manufacturing with strategy
+              consulting and technology development. Her experience includes an
+              engineering and management role at ZEISS Semiconductor
+              Manufacturing Technology, a research and project lead position at
+              ESMT Berlin, founding an AI strategy consultancy, and
+              international policy work at Germany's Federal Foreign Office and
+              the Bundestag. Additionally, she led a global module
+              standardization program, managed software engineering teams, and
+              built a cybersecurity governance organization in manufacturing.
+            </p>
+            <a
+              class="team-link"
+              href="https://www.linkedin.com/in/lola-attenberger/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View LinkedIn profile
+            </a>
+          </article>
+
+          <article class="card team-card">
+            <img
+              class="team-photo"
+              src="assets/team/alena-kurmyza.jpg"
+              alt="Alena Kurmyza, Co-Founder and CTO of AI Factory Unity"
+            />
+            <span class="team-role">Co-Founder & CTO</span>
+            <h3>Alena Kurmyza</h3>
+            <p>
+              Leads technical roadmap execution, development, and MVP delivery
+              at AI Factory Unity, with deep expertise in full-stack
+              engineering, backend architecture, and infrastructure including
+              Linux, APIs, networking, Python, and containerized applications.
+              Her background includes completion of 42 Berlin's Software
+              Engineering Core Curriculum, computer science courses at Freie
+              Universität Berlin, and a university diploma in Philology and
+              Rhetoric from Yanka Kupala State University of Hrodna. Additional
+              experience spans operational coordination, multilingual
+              stakeholder support, customer discovery, prototyping, AI
+              hackathons, and AI-assisted engineering workflows for industrial
+              manufacturing.
+            </p>
+            <a
+              class="team-link"
+              href="https://www.linkedin.com/in/alena-kurmyza/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View LinkedIn profile
+            </a>
+          </article>
+
+          <!-- Add future team members here as a new <article class="card team-card">...</article> -->
+        </div>
+      </section>
+      <!-- TEAM SECTION END -->
 
       <section class="trust-section" id="trust">
         <div class="content-section">
