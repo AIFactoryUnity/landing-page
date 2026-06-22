@@ -548,6 +548,58 @@
         font-size: 15px;
       }
 
+      .funding-logos {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 22px;
+        margin-top: 20px;
+        padding-top: 18px;
+        border-top: 1px solid rgba(10, 171, 183, 0.18);
+      }
+
+      .funding-logo {
+        display: block;
+        box-sizing: border-box;
+        width: 188px;
+        height: 74px;
+        object-fit: contain;
+        background: var(--white);
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+      }
+
+      .funding-logo-sibb {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--slate-600);
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .funding-logo-berlin {
+        width: 188px;
+      }
+
+      .funding-logo-wide {
+        width: 382px;
+      }
+
+      @media (max-width: 560px) {
+        .funding-logos {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .funding-logo,
+        .funding-logo-wide {
+          width: 100%;
+          max-width: 100%;
+        }
+      }
+
       .contact-panel {
         background: linear-gradient(135deg, var(--navy-950), var(--navy-800));
         color: var(--white);
@@ -966,15 +1018,32 @@
           </div>
           <div class="funding-note">
             <strong>SIBB Incubator 2026.</strong> AI Factory Unity is
-            participating in the SIBB Incubator 2026 in Berlin, part of the
+            participating in the SIBB Incubator 2026 in Berlin, as part of the
             Berlin Startup Grant, funded by the European Union (ESF+) and the
-            State of Berlin. We align with Europe’s mission for cyber
-            resilience, trustworthy AI, and digital sovereignty.
-            <!-- Optional funding-logo section:
-               Add official SIBB / ESF+ / State of Berlin logos here only if required by
-               the program visibility rules and only using official files provided by SIBB.
-               These logos should be shown as funding/incubation acknowledgement,
-               not as commercial partner or client logos. -->
+            State of Berlin.
+
+            <!-- ADD SIBB LOGO -->
+            <div class="funding-logos" aria-label="Funding logos">
+              <div class="funding-logo funding-logo-sibb">
+                SIBB Incubator logo
+              </div>
+              <!-- <img
+				  class="funding-logo"
+				  src="assets/funding/sibb-logo.png"
+				  alt="SIBB Incubator logo"
+				/> -->
+              <img
+                class="funding-logo funding-logo-berlin"
+                src="assets/funding/b_logo_m_pw_rgb.png"
+                alt="State of Berlin logo"
+              />
+
+              <img
+                class="funding-logo funding-logo-wide"
+                src="assets/funding/de-kofinanziert-von-der-europaeischen-union_rgb.jpg"
+                alt="Co-funded by the European Union logo"
+              />
+            </div>
           </div>
         </div>
       </section>
